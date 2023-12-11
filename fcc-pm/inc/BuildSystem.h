@@ -25,6 +25,7 @@ struct Submodule {
             std::thread t (buildObj, module, incDirs, settings, obj);
             t.join();
         }
+        for (std::map<std::string, std::vector<std::string>> out : outs) {}
         std::cout << "===> Finished building " << module << "!\n";
     }
 };
