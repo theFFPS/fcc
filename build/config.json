@@ -7,6 +7,6 @@
     "static": "ar", 
     "static_opts": "rcs",
     "cxx_opts": "-Wall -Werror -Wextra -g", 
-    "linker_opts": "-Wall -Werror -Wextra  -g"
+    "linker_opts": "-Wall -Werror -Wextra -g"
   }
 }
