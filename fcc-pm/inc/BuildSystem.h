@@ -6,6 +6,8 @@
 struct Submodule {
     std::map<std::string, std::string> settings;
     std::vector<std::map<std::string, std::vector<std::string>>> objs, outs;
+    std::string module;
+    std::vector<std::string> libDirs, incDirs;
 };
 struct BuildSystem {
     std::vector<Submodule> submodules;
