@@ -1,5 +1,7 @@
 {
+  "project": "fcc", 
   "subprojects": [
+    "fcc-pm"
   ], 
   "settings": {
     "cxx": "c++", 
