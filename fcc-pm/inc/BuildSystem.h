@@ -39,6 +39,9 @@ struct BuildSystem {
         f.close();
         json JSON = json::parse(buff);
         project = JSON["project"];
+        settings = {
+            { "cxx", JSON["settings"]["cxx"] }
+        };
         for (auto subproject : JSON["subprojects"]) {
             f.open(subproject + "/build.json");
             while (f.good() && getline(f, line)) buff += line + "\n";
