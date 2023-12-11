@@ -34,7 +34,20 @@ struct BuildSystem {
     std::map<std::string, std::string> settings;
     inline void setup() {
         std::string buff, line;
+        std::fstream f ("build/config.json");
+        while (f.good() && getline(f, line)) buff += line + "\n";
+        f.close();
         json JSON = json::parse(buff);
+        project = JSON["project"];
+        for (auto subproject : JSON["subprojects"]) {
+            f.open(subproject + "/build.json");
+            while (f.good() && getline(f, line)) buff += line + "\n";
+            f.close();
+            JSON = json::parse(buff);
+            Submodule module;
+            module.module = JSON["module"];
+            submodules.push_back(module);
+        }
     }
     inline void build() {
         system("mkdir -p build/{objects,executables,libraries}");
