@@ -1,0 +1,11 @@
+{
+  "module": "fcc-pm"
+  "libDirs": [
+  ], 
+  "incDirs": [
+  ], 
+  "objs": [
+  ], 
+  "outs": [
+  ]
+}
