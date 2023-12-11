@@ -40,7 +40,12 @@ struct BuildSystem {
         json JSON = json::parse(buff);
         project = JSON["project"];
         settings = {
-            { "cxx", JSON["settings"]["cxx"] }
+            { "cxx", JSON["settings"]["cxx"] },
+            { "cxx_opts", JSON["settings"]["cxx_opts"] }, 
+            { "linker", JSON["settings"]["linker"] }, 
+            { "linker_opts", JSON["settings"]["linker_opts"] },
+            { "static", JSON["settings"]["static"] }, 
+            { "static_opts", JSON["settings"]["static_opts"] }
         };
         for (auto subproject : JSON["subprojects"]) {
             f.open(subproject + "/build.json");
@@ -49,6 +54,15 @@ struct BuildSystem {
             JSON = json::parse(buff);
             Submodule module;
             module.module = JSON["module"];
+            for (auto val : JSON["incDirs"]) module.incDirs.push_back(val);
+            for (auto val : JSON["libDirs"]) module.libDirs.push_back(val); 
+            for (auto val : JSON["objs"])   module.objs.push_back({{"type",{val["type"][0]}}, {"ext",{val["ext"][0]}}, {"name",{val["name"][0]}}});
+            for (auto val : JSON["outs"])                { 
+                std::vector<std::string> objs, libs;
+                for (auto val0 : val["objs"]) objs.push_back(val0);
+                for (auto val0 : val["objs"]) libs.push_back(val0);
+                 module.outs.push_back({{"type",{val["type"][0]},{"objs",objs, {"libs",libs, {"name",{val["name"][0]}}});
+            }
             submodules.push_back(module);
         }
     }
