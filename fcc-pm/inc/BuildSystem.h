@@ -4,6 +4,9 @@
 #include <map>
 #include <vector>
 #include <thread>
+#include <fstream>
+#include "json.h"
+using namespace nlohmann;
 inline void buildObj(std::string const  module, std::vector<std::string> const incDirs, std::map<std::string, std::string> const settings, std::map<std::string, std::vector<std::string>> const obj) {
     std::string incDirsS;
     for (sts::string const incDir : incDirs) incDirsS += " -I./" + incDir;
@@ -29,6 +32,10 @@ struct BuildSystem {
     std::vector<Submodule> submodules;
     std::string project;
     std::map<std::string, std::string> settings;
+    inline void setup() {
+        std::string buff, line;
+        json JSON = json::parse(buff);
+    }
     inline void build() {
         system("mkdir -p build/{objects,executables,libraries}");
         std::cout << "===> Started building " << project << "!\n";
