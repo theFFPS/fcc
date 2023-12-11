@@ -1,0 +1,12 @@
+{
+  "subprojects": [
+  ], 
+  "settings": {
+    "cxx": "c++", 
+    "linker": "c++", 
+    "static": "ar", 
+    "static_opts": "rcs",
+    "cxx_opts": "-Wall -Werror -Wextra -g", 
+    "linker_opts": "-Wall -Werror -Wextra  -g"
+  }
+}
