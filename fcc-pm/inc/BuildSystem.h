@@ -5,7 +5,9 @@
 #include <vector>
 #include <thread>
 inline void buildObj(std::vector<std::string> const incDirs, std::map<std::string, std::string> const settings, std::map<std::string, std::vector<std::string>> const obj) {
-    
+    std::string incDirsS;
+    for (sts::string const incDir : incDirs) incDirsS += " -I./" + incDir;
+    if (obj["type"][0] == "cxx" ||  obj["type"][0] == "cpp" || obj["type"][0] == "c++") system((settings["cxx"] + " " + settings["cxx_opts"] + incDirsS + " -c -o " + obj["name"][0] + " " + obj["name"][0] + "." + obj["ext"][0]).c_str());
 }
 struct Submodule {
     std::map<std::string, std::string> settings;
