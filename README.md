@@ -1,2 +1,2 @@
 # fcc
-C/C++ compiler and package manager
+fVM compilers and package manager
